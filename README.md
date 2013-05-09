@@ -2,6 +2,8 @@ Git für Informatiker
 =====================
 Workshop Git für Informatiker des Fachbereichs Informatik der Hochschule Darmstadt von Oliver Meinusch
 
+Die aktuellste Version der Präsentation kann unter http://omeinusch.github.io/git-fuer-informatiker betrachtet werden.
+
 Termine:
 - 7. Mai 2013
 - 28. Mai 2013
