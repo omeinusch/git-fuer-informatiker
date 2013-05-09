@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="de">
+	<head>
+		<meta charset="utf-8">
+        <title>git für Informatiker - Einführungsworkshop an der Hochschule Darmstadt, Fachbereich Informatik</title>
+
+		<meta name="description" content="Ein Einführungsworkshop für Studenten des Fachbereichs Informatik an der Hochschule Darmstadt.">
+		<meta name="author" content="Oliver Meinusch">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+        </script>
+
+		<!--[if lt IE 9]>
+            <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+	<body>
+		<div class="reveal">
+            <div class="slides">
+
+                <!--
+                    Abschnitt 1
+                    Organisatorisches
+                -->
+                <section>
+                    <section>
+                        <h1>Git Für Informatiker</h1>
+                        Für den Fachbereich Informatik <br>
+                        der Hochschule Darmstadt <br><br>
+                        7. Mai 2013 &amp; 28. Mai 2013 <br>
+                    </section>
+
+                    <section>
+                        <h2>Kontakt</h2>
+                        <br><br>
+                        Oliver Meinusch <br><br>
+                        oliver.meinusch@stud.h-da.de
+                    </section>
+                </section>
+
+                <!--
+                    Abschnitt 2
+                    Stimmung machen
+                -->
+                <section>
+                    <h2>Git</h2>
+                    Vergiß <b>alles</b><br>
+                    was du über<br>
+                    <b>Versionskontrollsysteme</b><br>
+                    weißt</p>
+                </section>
+
+                <!--
+                    Abschnitt 3
+                    git einrichten
+                -->
+                <section>
+                    <section>
+                        <h2>Sich Vorstellen</h2>
+                        <br><br>
+                        <pre><code data-trim>
+$ git config --global user.name "Oliver Meinusch"
+$ git config --global user.email "oliver.meinusch@stud.h-da.de"
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>git init</h2>
+                        <pre><code data-trim>
+$ cd ~
+$ mkdir -p git/kurs
+$ git init
+Initialized empty Git repository in /home/omeinusch/git/kurs/.git/
+$ ls
+$ ls -a
+.  ..  .git
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Es lebt...</h2>
+                        <br />
+                        <pre><code data-trim>
+$ git status
+# On branch master
+#
+# Initial commit
+#
+nothing to commit (create/copy files and use "git add" to track)
+                        </code></pre>
+                    </section>
+                </section>
+
+                <!--
+                    Abschnitt 4
+                    Eine Datei hinzufügen
+                -->
+                <section>
+                    <section>
+                        <h2>Eine Geburt</h2>
+                        <pre><code data-trim>$ nano ErsteDatei.txt</code></pre>
+                        <pre>Hallo,<br>Das ist meine erste Datei<br>Vielen Dank!</pre>
+
+                        <p>STRG + X, Y, &lt;ENTER&gt;</p>
+                        <br />
+                        <pre><code data-trim>
+$
+$ ls
+ErsteDatei.txt
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Git hat es gemerkt</h2>
+                        <pre><code data-trim>
+$ git status
+# On branch master
+#
+# Initial commit
+#
+# Untracked files:
+#   (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+#      ErsteDatei.txt
+nothing added to commit but untracked files present 
+(use "git add" to track)
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Der Beginn einer Romanze</h2>
+                        <pre><code data-trim>
+$ git add Erste Datei.txt
+$
+                        </code></pre>
+                        <br>
+                        <pre><code data-trim>
+$ git status
+# On branch master
+#
+# Initial commit
+#
+# Changes to be commited:
+#   (use "git rm --cached &lt;file&gt;..." to unstage)
+#
+#       new file:   ErsteDatei.txt
+#
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Und sichern!</h2>
+                        <pre><code data-trim>
+$ git commit
+                        </code></pre>
+                        <br>
+                        <pre>
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use "git rm --cached &lt;file&gt;..." to unstage)
+#
+#       new file:   ErsteDatei.txt
+#
+                        </pre>
+                    </section>
+
+                    <section>
+                        <pre>
+Mein erster Commit!
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#   (use "git rm --cached &lt;file&gt;..." to unstage)
+#
+#       new file:   ErsteDatei.txt
+#
+
+                        </pre>
+                        <br>
+                        <pre><code data-trim>
+$ git commit
+[master (root-commit) 0cc7e69] Mein erster Commit!
+1 files changed, 3 insertions(+), 0 deletions(-)
+create mode 100644 ErsteDatei.txt
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Hat alles geklappt?</h2>
+                        <pre><code data-trim>
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+$
+                        </code></pre>
+                    </section>
+                </section>
+
+                <!--
+                    Abschnitt 5
+                    Eine weitere Datei hinzufügen
+                    und eine Datei verändern.
+                -->
+                <section>
+                    <section>
+                        <h2>Die Zeit des Nachwuchses</h2>
+                        <br>
+                        <pre><code data-trim>
+$ nano ZweiteDatei.txt 
+                        </code></pre>
+                        
+                        <pre>
+Dies ist eine zweite Datei. Die mag ich sehr.
+                        </pre>
+
+                        <pre><code data-trim>
+$ git status
+# On branch master
+# Untracked files:
+#   (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+#       ZweiteDatei.txt
+nothing added to commit but untracked files present
+(use "git add" to track)
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Eine Abkürzung</h2>
+                        <pre><code data-trim>
+$ git add ZweiteDatei.txt
+$ git commit -m "Zweite Datei hinzugefügt"
+[master fd6c897] Zweite Datei hinzugefügt
+1 files changed, 2 insertions(+), 0 deletions(-)
+create mode 100644 ZweiteDatei.txt 
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Die Zeit der Veränderung</h2>
+                        <pre><code data-trim>
+$ nano ErsteDatei.txt
+                        </code></pre>
+
+                        <pre>
+Hallo,
+ich bin eine Datei!
+Vielen Dank!
+
+Und ich bin eine neue Zeile!
+                        </pre>
+                        <pre><code data-trim>
+$ git add *
+$ git commit -m "Neue Zeile in erster Datei."
+[master ca2b541] Neue Zeile in erster Datei.
+1 files changed, 3 insertions(+), 0 deletions(-)
+$ 
+                        </code></pre>
+                    </section>
+                </section>
+
+                
+                <!--
+                    Abschnitt 6
+                    Veränderung nachvollziehen
+                -->
+                <section>
+                    <section>
+                        <h2>Revue passieren lassen</h2>
+                        <pre><code data-trim>
+$ git log
+commit ca2b5410ba9be0f5002066525821d7727dbc3223
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 7 15:09:37 2013 +0200
+
+Neue Zeile in erster Datei.
+
+commit fd6c897418036687915655554a2a0dfd5888a240
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 7 15:06:32 2013 +0200
+
+Zweite Datei hinzugefügt
+
+                        </code><!-- Kleiner Hotfix damit kein Scrollbalken, --><code data-trim> 
+                        </code><!-- aber eine neue Zeile dargestellt werden. --><code data-trim>
+
+commit 0cc7e69b27125caa4e91f9112c7bf26cf7638a53
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt; 
+Date:   Tue May 7 14:56:12 2013 +0200
+
+Mein erster Commit!
+
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Etwas weniger Revue</h2>
+                        <pre><code data-trim>
+$ git log -2
+commit ca2b5410ba9be0f5002066525821d7727dbc3223
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 7 15:09:37 2013 +0200
+
+Neue Zeile in erster Datei.
+
+commit fd6c897418036687915655554a2a0dfd5888a240
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 7 15:06:32 2013 +0200
+
+Zweite Datei hinzugefügt
+
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Noch weniger!</h2>
+                        <pre><code data-trim>
+$ git log --oneline
+ca2b541 Neue Zeile in erster Datei.
+fd6c897 Zweite Datei hinzugefügt
+0cc7e69 Mein erster Commit!
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Wie viel weniger?</h2>
+                        <pre><code data-trim>
+$ git log --oneline -2
+ca2b541 Neue Zeile in erster Datei.
+fd6c897 Zweite Datei hinzugefügt
+$ 
+                        </code></pre>
+                    </section>
+                </section>
+
+                
+                <!--
+                    Abschnitt 7
+                    Unterschiede der Revisionen betrachten
+                -->
+                <section>
+                    <section>
+                        <h2>Aber was ist passiert?</h2>
+                        <pre><code data-trim>
+$ git log --oneline
+ca2b541 Neue Zeile in erster Datei.
+fd6c897 Zweite Datei hinzugefügt
+0cc7e69 Mein erster Commit!
+$ 
+                        </code></pre>
+                        <pre><code data-trim>
+$ git diff ca2b541..fd6c897
+diff --git a/ErsteDatei.txt b/ErsteDatei.txt
+index 7d41b01..20d2108 100644
+--- a/ErsteDatei.txt
++++ b/ErsteDatei.txt
+@@ -1,6 +1,3 @@
+Hallo,
+ich bin eine Datei!
+Vielen Dank!
+-
+-Und ich bin eine neue Zeile!
+-
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Besser andersherum</h2>
+                        <pre><code data-trim>
+$ git log --oneline
+ca2b541 Neue Zeile in erster Datei.
+fd6c897 Zweite Datei hinzugefügt
+0cc7e69 Mein erster Commit!
+$
+                        </code></pre>
+                        <pre><code data-trim>
+$ git diff fd6c897..ca2b541
+diff --git a/ErsteDatei.txt b/ErsteDatei.txt
+index 20d2108..7d41b01 100644
+--- a/ErsteDatei.txt
++++ b/ErsteDatei.txt
+@@ -1,3 +1,6 @@
+Hallo,
+ich bin eine Datei!
+Vielen Dank!
++
++Und ich bin eine neue Zeile!
++
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Noch weiter zurückschauen</h2>
+                        <pre><code data-trim>
+$ git diff 0cc7e69..ca2b541
+diff --git a/ErsteDatei.txt b/ErsteDatei.txt
+index 20d2108..7d41b01 100644
+--- a/ErsteDatei.txt
++++ b/ErsteDatei.txt
+@@ -1,3 +1,6 @@
+Hallo,
+ich bin eine Datei!
+Vielen Dank!
++
++Und ich bin eine neue Zeile!
++ 
+                        </code></pre>
+                        <pre><code data-trim>
+diff --git a/ZweiteDatei.txt b/ZweiteDatei.txt
+new file mode 100644
+index 0000000..87363a1
+--- /dev/null
++++ b/ZweiteDatei.txt
+@@ -0,0 +1,2 @@
++Dies ist eine zweite Datei. Die mag ich sehr.
++
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Alles Kopfsache!</h2>
+                        <pre><code data-trim>
+$ git diff HEAD^
+diff --git a/ErsteDatei.txt b/ErsteDatei.txt
+index 20d2108..7d41b01 100644
+--- a/ErsteDatei.txt
++++ b/ErsteDatei.txt
+@@ -1,3 +1,6 @@
+Hallo,
+ich bin eine Datei!
+Vielen Dank!
++
++Und ich bin eine neue Zeile!
++
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Noch mehr Kopf</h2>
+                        <pre><code data-trim>
+$ git diff HEAD^^
+diff --git a/ErsteDatei.txt b/ErsteDatei.txt
+index 20d2108..7d41b01 100644
+--- a/ErsteDatei.txt
++++ b/ErsteDatei.txt
+@@ -1,3 +1,6 @@
+Hallo,
+ich bin eine Datei!
+Vielen Dank!
++
++Und ich bin eine neue Zeile!
++ 
+                        </code></pre>
+                        <pre><code data-trim>
+diff --git a/ZweiteDatei.txt b/ZweiteDatei.txt
+new file mode 100644
+index 0000000..87363a1
+--- /dev/null
++++ b/ZweiteDatei.txt
+@@ -0,0 +1,2 @@
++Dies ist eine zweite Datei. Die mag ich sehr.
++ 
+                        </code></pre>
+                    </section>
+                </section>
+                
+                
+                <!--
+                    Abschnitt 8
+                    Laufende Änderungen betrachten
+                -->
+                <section>
+                    <section>
+                        <h2>Differenzen bringen uns weiter</h2>
+                        <pre><code data-trim>
+$ nano ZweiteDatei.txt 
+                        </code></pre>
+                        <pre>
+Dies ist eine zweite Datei. Die mag ich sehr.
+
+Sie bekommt auch eine neue Zeile.
+                        </pre>
+                        <pre><code data-trim>
+$ git diff HEAD
+diff --git a/ZweiteDatei.txt b/ZweiteDatei.txt
+index 87363a1..789135d 100644
+--- a/ZweiteDatei.txt
++++ b/ZweiteDatei.txt
+@@ -1,2 +1,3 @@
+Dies ist eine zweite Datei. Die mag ich sehr.
+
++Sie bekommt auch eine neue Zeile.
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Auch Kopflos</h2>
+                        <pre><code data-trim>
+$ git diff
+diff --git a/ZweiteDatei.txt b/ZweiteDatei.txt
+index 87363a1..789135d 100644
+--- a/ZweiteDatei.txt
++++ b/ZweiteDatei.txt
+@@ -1,2 +1,3 @@
+Dies ist eine zweite Datei. Die mag ich sehr.
+
++Sie bekommt auch eine neue Zeile.
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Oder Kopf und Extra</h2>
+                        <pre><code data-trim>
+$ git diff HEAD^
+diff --git a/ErsteDatei.txt b/ErsteDatei.txt
+index 20d2108..7d41b01 100644
+--- a/ErsteDatei.txt
++++ b/ErsteDatei.txt
+@@ -1,3 +1,6 @@
+Hallo,
+ich bin eine Datei!
+Vielen Dank!
++
++Und ich bin eine neue Zeile!
++ 
+                        </code></pre>
+                        <pre><code data-trim>
+diff --git a/ZweiteDatei.txt b/ZweiteDatei.txt
+index 87363a1..789135d 100644
+--- a/ZweiteDatei.txt
++++ b/ZweiteDatei.txt
+@@ -1,2 +1,3 @@
+Dies ist eine zweite Datei. Die mag ich sehr.
+
++Sie bekommt auch eine neue Zeile. 
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Wie ist der Status?</h2>
+                        <pre><code data-trim>
+$ git status
+# On branch master
+# Changed but not updated:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard 
+#    changes in working directory)
+#
+#       modified:   ZweiteDatei.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Und speichern!</h2>
+                        <pre><code data-trim>
+$ git commit -a -m "und speichern!"
+[master 054f9ce] und speichern!
+1 files changed, 1 insertions(+), 0 deletions(-)
+$
+                        </code></pre>
+                    </section>
+                </section>
+
+                
+                <!--
+                    Abschnitt 9
+                    Dateien löschen und wiederherstellen
+                -->
+                <section>
+                    <section>
+                        <h2>Weg damit!</h2>
+                        <pre><code data-trim>
+$ rm ZweiteDatei.txt
+$
+                        </code></pre>
+                        <pre><code data-trim>
+$ git status
+# On branch master
+# Changed but not updated:
+#   (use "git add/rm &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard 
+#    changes in working directory)
+#
+#       deleted:    ZweiteDatei.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+$
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Einen Rückzieher machen</h2>
+                        <pre><code data-trim>
+$ ls
+ErsteDatei.txt 
+                        </code></pre>
+                        <pre><code data-trim>
+$ git status
+# On branch master
+# Changed but not updated:
+#   (use "git add/rm &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard
+#    changes in working directory)
+#
+#       deleted:    ZweiteDatei.txt
+#
+no changes added to commit (use "git add" and/or "git commit -a") 
+                        </code></pre>
+                        <pre><code data-trim>
+$ git checkout -- ZweiteDatei.txt  
+                        </code></pre>
+                        <pre><code data-trim>
+$ ls
+ErsteDatei.txt  ZweiteDatei.txt
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Es ernst meinen</h2>
+                        <pre><code data-trim>
+$ git rm ErsteDatei.txt
+rm 'ErsteDatei.txt' 
+                        </code></pre>
+                        <pre><code data-trim>
+$ ls
+ZweiteDatei.txt 
+                        </code></pre>
+                        <pre><code data-trim>
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD &lt;file&gt;..." to unstage)
+#
+#       deleted:    ErsteDatei.txt
+# 
+                        </code></pre>
+                        <pre><code data-trim>
+$ git commit -m "Und weg damit."
+[master 6e76c30] Und weg damit.
+1 files changed, 0 insertions(+), 6 deletions(-)
+delete mode 100644 ErsteDatei.txt
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Zufrieden zurückblicken</h2>
+                       <pre><code data-trim>
+$ git diff HEAD^
+diff --git a/ErsteDatei.txt b/ErsteDatei.txt
+deleted file mode 100644
+index 7d41b01..0000000
+--- a/ErsteDatei.txt
++++ /dev/null
+@@ -1,6 +0,0 @@
+-Hallo,
+-ich bin eine Datei!
+-Vielen Dank!
+-
+-Und ich bin eine neue Zeile!
+-
+                        </code></pre>
+                    </section>
+                </section>                                                         
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                // { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+                // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+    </body>
+</html>
