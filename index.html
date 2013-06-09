@@ -50,6 +50,15 @@
                         Oliver Meinusch <br><br>
                         oliver.meinusch@stud.h-da.de
                     </section>
+                    
+                    <section>
+                        <p>Bedauerlicherweise haben Zeit und Finanzierung nicht
+                        dafür gereicht, für alle angesprochenen Themen im 
+                        Git-Kurs Material zu erstellen. Die fehlenden Teile 
+                        &mdash; entferntes Arbeiten, bisect &mdash; wurden 
+                        während der Veranstaltung "live" vorgeführt und 
+                        vorgestellt.</p>
+                    </section>
                 </section>
 
                 <!--
@@ -697,7 +706,512 @@ index 7d41b01..0000000
 -
                         </code></pre>
                     </section>
-                </section>                                                         
+                </section>    
+                
+<!------------------------------------------------------------------------------
+    Hier folgt der zweite Teil
+------------------------------------------------------------------------------->
+
+  <!--
+                    Abschnitt 3
+                    tagging
+                -->
+                <section>
+                    <h2>Teil Zwei</h2>
+                    <p>Es folgen die Folien vom 28. Mai 2013.</p>
+                </section>
+                <section>
+                    <section>
+                        <h2>Beispieldaten erzeugen</h2>
+                        <pre><code data-trim>
+$ mkdir -p ~/git/kurs2
+$ cd ~/git/kurs2
+$ git init
+Initialized empty Git repository in /home/omeinusch/git/kurs2/.git/
+$ nano hello.py
+                        </code></pre>
+                        <pre>
+print 'Hello, world!'
+                        </pre>
+                        <pre><code data-trim>
+$ git add hello.py
+$ git commit -m "Hallo Welt hinzugefügt."
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Mehr!</h2>
+                        <pre><code data-trim>
+$ nano hello.py
+                        </code></pre>
+                        <pre>
+print 'Hello, world!'
+print 'Es ist schön hier!'
+                        </pre>
+                        <pre><code data-trim>
+$ git commit -a -m "Zweiter Satz"
+$ nano hello.py
+                        </code></pre>
+                        <pre>
+print 'Hello, world!'
+print 'Es ist schön hier!'
+print '1 + 1 =', 1 + 1
+                        </pre>
+                        <pre><code data-trim>
+$ git commit -a -m "Ich kann Mathe"
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Überprüfen!</h2>
+                        <pre><code data-trim>
+$ git log --oneline
+5575ced Ich kann Mathe
+f508913 Zweiter Satz
+4191a5d Hallo Welt hinzugefügt.
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Es ganz besonders gut finden</h2>
+                        <pre><code data-trim>
+$ git tag -a release-1
+                        </code></pre>
+                        <pre>
+Mein erster Release!
+#
+# Write a tag massage
+# Lines starting with '#' will be ignored.
+#                        </pre>
+                        <pre><code data-trim>
+$
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Was ist passiert?</h2>
+                        <pre><code data-trim>
+$ git log --oneline
+5575ced Ich kann Mathe
+f508913 Zweiter Satz
+4191a5d Hallo Welt hinzugefügt.
+                        </code></pre>
+                        <pre><code data-trim>
+$ git tag
+release-1
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Den Tag betrachten</h2>
+                        <pre><code data-trim>
+$ git show release-1
+tag release-1
+Tagger: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 28 14:19:21 2013 +0200
+
+Mein erster Release.
+
+
+                        </code></pre>
+                        <pre><code data-trim>
+commit 5575ced96ac380b9980a3de41e32d9090efb581f
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 28 14:18:35 2013 +0200
+
+    Ich kann Mathe
+
+diff --git a/hello.py b/hello.py
+index a6c2f3c..b7f65f1 100644
+--- a/hello.py
++++ b/hello.py
+@@ -1,2 +1,3 @@
+ print 'Hello, world!'
+ print 'Es ist schön hier!'
++print '1 + 1 =', 1 + 1
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Was ist passiert?</h2>
+                        <pre><code data-trim>
+$ git log --oneline
+5575ced Ich kann Mathe
+f508913 Zweiter Satz
+4191a5d Hallo Welt hinzugefügt.
+                        </code></pre>
+                        <pre><code data-trim>
+$ git show 5575ced
+commit 5575ced96ac380b9980a3de41e32d9090efb581f
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 28 14:18:35 2013 +0200
+
+    Ich kann Mathe
+
+diff --git a/hello.py b/hello.py
+index a6c2f3c..b7f65f1 100644
+--- a/hello.py
++++ b/hello.py
+@@ -1,2 +1,3 @@
+ print 'Hello, world!'
+ print 'Es ist schön hier!'
++print '1 + 1 =', 1 + 1
+                        </code></pre>
+                    </section>
+                </section>
+                <!--
+                    Teil 
+                    Einen weiteren Tag erzeugen und die Unterschiede sehen.
+                -->
+                <section>
+                    <section>
+                        <h2>Mehr Code!</h2>
+                        <pre><code data-trim>
+$ nano hello.py
+                        </code></pre>
+                        <pre>
+print 'Hello, world!'
+print 'Es ist schön hier!'
+print '1 + 1 =', 1 + 1
+
+print 'Ich rechne mehr:', 3 + 4 * 2
+                        </pre>
+                        <pre><code data-trim>
+$ git commit -a -m "Noch eine Rechnung."
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Und noch mehr!!</h2>
+                        <pre><code data-trim>
+$ nano hello.py
+                        </code></pre>
+                        <pre>
+print 'Hallo, Welt!'
+print 'Es ist schön hier!'
+print '1 + 1 =', 1 + 1
+
+print 'Ich rechne mehr:', 3 + 4 * 2
+                        </pre>
+                        <pre><code data-trim>
+$ git commit -a -m "Auf Deutsch ist besser."
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Reicht jetzt.</h2>
+                        <pre><code data-trim>
+$ git log --oneline
+6379c76 Auf Deutsch ist besser.
+57a447d Noch eine Rechnung.
+5575ced Ich kann Mathe
+f508913 Zweiter Satz
+4191a5d Hallo Welt hinzugefügt.
+                        </code></pre>
+                        <pre><code data-trim>
+$ git tag -a release-2 -m "Zweiter Release."
+$
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Unterschiede zwischen den Versionen</h2>
+                        <pre><code data-trim>
+$ git diff release-1..release-2
+diff --git a/hello.py b/hello.py
+index b7f65f1..19e850e 100644
+--- a/hello.py
++++ b/hello.py
+@@ -1,3 +1,5 @@
+-print 'Hello, world!'
++print 'Hallo, Welt!'
+ print 'Es ist schön hier!'
+ print '1 + 1 =', 1 + 1
++
++print 'Ich rechne mehr:', 3 + 4 * 2
+                        </code></pre>
+                    </section>
+                </section>
+                <!--
+                    Teil
+                    Einen Tag signieren
+                -->
+                <section>
+                    <section>
+                        <h2>Einen GPG-Schlüssel erzeugen</h2>
+                        <pre><code data-trim>
+$ git config user.name
+Oliver Meinusch
+$ git config user.email
+oliver.meinusch@stud.h-da.de
+$ gpg --gen-key
+$
+                        </pre></code>
+                    </section>
+                    <section>
+                        <h2>Versiegeln</h2>
+                        <pre><code data-trim>
+$ git tag -s release-2-signed 
+$ git tag
+release-1
+release-2
+release-2-signed
+
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Die Versiegelung betrachten (1)</h2>
+                            <pre><code data-trim>
+$ git show release-2-signed
+tag release-2-signed
+Tagger: Oliver Meinusch &lt;oliver.meinusch@&hellip;&gt;
+Date:   Tue May 28 14:50:21 2013 +0200
+
+Zweiter Release, signiert.
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.7 (MingW32)
+
+iQEVAwUAUaSMBMWeviWTDMYIAQLdRggAq6T3lwGonbZIVgRbkRl2oWV+7jv7p4A9
+E9dxpU9JD9I9wAhtvbXubACc8/9WT+m9pecbiEV1PqgejbH8CGv1cEAy8Mlg0jvt
+n9caxWU95vm1TvAbjP7bfIrILoomzoXpSOLbbtGeAtwLZRxzmfhVf+GdVJVYDecr
+BLDXJJjB4697mgmT9fDBxuEuSiwC2HJvN1wy93+FpszyLM3WdtW0dGsQ7wuji0k7
+xB3kk0RP0I+nwgAFlBhNMDv3h+NW38S4R4lyWN3vXH215uL/ggMlwVX+csrtsDgm
+o0+uulmXJNPGH/6u0tfZc4hlWXYHZ/FXUfVa7nkBKP325ZoxfQtiPA==
+=zQ15
+-----END PGP SIGNATURE-----
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Die Versiegelung betrachten (2)</h2>
+                        <pre><code data-trim>
+
+commit 6379c76c02e6bf2a96a688defe5dfe0b9bb25c9b
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 28 14:46:21 2013 +0200
+
+    Auf Deutsch ist besser.
+
+diff --git a/hello.py b/hello.py
+index 1b74298..19e850e 100644
+--- a/hello.py
++++ b/hello.py
+@@ -1,4 +1,4 @@
+-print 'Hello, world!'
++print 'Hallo, Welt!'
+ print 'Es ist schön hier!'
+ print '1 + 1 =', 1 + 1
+
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Die Versiegelung überprüfen</h2>
+                        <pre><code data-trim>
+$git tag -v release-2-signed
+object 6379c76c02e6bf2a96a688defe5dfe0b9bb25c9b
+type commit
+tag release-2-signed
+tagger Oliver Meinusch &lt;oliver.meinusch@&hellip;&gt;" 1369752381 +0200
+
+Zweiter Release, signiert.
+gpg: Signature made 05/28/13 14:40:44 using RSA key ID 930CC608
+gpg: Good signature from "Oliver Meinusch &lt;oliver.meinusch@&hellip;&gt;"
+$                 
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Tag entfernen</h2>
+                        <pre><code data-trim>
+$ git tag -d release-2
+$ git tag
+release-1
+release-2-signed
+                        </code></pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Wir können alles signieren!</h2>
+                        <pre>
+print 'Machen wir mal was ganz anderes.'
+                        </pre>
+                        <pre><code data-trim>
+$ git commit -S -a -m "Was ganz neues."
+$ git log -1
+commit 4b5267b69bfc7f67b2470d21096ace03115c5ecf
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 28 15:13:56 2013 +0200
+
+    Was ganz neues.
+$
+                        </code></pre>                        
+                    </section>
+                    <section>
+                        <pre><code data-trim>
+$ git log -1 --show-signature
+commit 4b5267b69bfc7f67b2470d21096ace03115c5ecf
+gpg: Signature made 05/28/13 15:13:56 using RSA key ID 930CC608
+gpg: Good signature from "Oliver Meinusch &lt;oliver.meinusch@&hellip;&gt;"
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 28 15:13:56 2013 +0200
+
+    Was ganz neues.
+$
+                        </code></pre>                        
+                    </section>     
+                    <section>
+                        <pre><code data-trim>
+$ git show HEAD
+commit 4b5267b69bfc7f67b2470d21096ace03115c5ecf
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 28 15:13:56 2013 +0200
+
+    Was ganz neues.
+                        </code></pre>
+                        <pre><code data-trim>
+diff --git a/hello.py b/hello.py
+index 19e850e..95b2bea 100644
+--- a/hello.py
++++ b/hello.py
+@@ -1,5 +1 @@
+-print 'Hallo, Welt!'
+-print 'Es ist schön hier!'
+-print '1 + 1 =', 1 + 1
+-
+-print 'Ich rechne mehr:', 3 + 4 * 2
++print 'Machen wir mal was ganz anderes.'
+$
+                        </code></pre>                        
+                    </section>     
+                    <section>
+                        <pre><code data-trim>
+$ git show HEAD --show-signature
+commit 4b5267b69bfc7f67b2470d21096ace03115c5ecf
+gpg: Signature made 05/28/13 15:13:56 using RSA key ID 930CC608
+gpg: Good signature from "Oliver Meinusch &lt;oliver.meinusch@&hellip;&gt;"
+Author: Oliver Meinusch &lt;oliver.meinusch@stud.h-da.de&gt;
+Date:   Tue May 28 15:13:56 2013 +0200
+
+    Was ganz neues.
+                        </code></pre>
+                        <pre><code data-trim>
+diff --git a/hello.py b/hello.py
+index 19e850e..95b2bea 100644
+--- a/hello.py
++++ b/hello.py
+@@ -1,5 +1 @@
+-print 'Hallo, Welt!'
+-print 'Es ist schön hier!'
+-print '1 + 1 =', 1 + 1
+-
+-print 'Ich rechne mehr:', 3 + 4 * 2
++print 'Machen wir mal was ganz anderes.'
+$
+                        </code></pre>                        
+                    </section>     
+                </section>
+                <!--
+                    Teil 
+                    Ein bestehendes Repository hochladen.
+                -->
+                <section>
+                    <section>
+                        <h2>Bestehende Arbeit hochladen</h2>
+                        <pre><code data-trim>
+$ git remote add origin git@github.com:omeinusch/git-kurs.git
+$ git push -u origin master
+                        </code></pre>                        
+                        <div class="fragment invisible">
+                            <pre><code data-trim>
+Counting objects: 18, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (10/10), done.
+Writing objects: 100% (18/18), 1.91 KiB, done.
+Total 18 (delta 2), reused 0 (delta 0)
+To git@github.com:omeinusch/git-kurs.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+                            </code></pre>                        
+                        </div>
+                    </section>    
+                    
+                    <section>
+                        <h2>Unseren Tag hochladen</h2>
+                        <pre><code data-trim>
+$ git push origin release-1
+Counting objects: 1, done.
+Writing objects: 100% (1/1), 174 bytes, done.
+Total 1 (delta 0), reused 0 (delta 0)
+To git@github.com:omeinusch/git-kurs.git
+ * [new tag]         release-1 -> release-1
+                        </code></pre>  
+                    </section>
+                    <section>
+                        <h2>Alle Tags hochladen</h2>
+                        <pre><code data-trim>
+$ git push origin --tags
+Counting objects: 1, done.
+Writing objects: 100% (1/1), 557 bytes, done.
+Total 1 (delta 0), reused 0 (delta 0)
+To git@github.com:omeinusch/git-kurs.git
+ * [new tag]         release-2-signed -> release-2-signed
+                        </code></pre>  
+                    </section>
+                    
+                    <section>
+                        <h2>Alle Tags ansehen</h2>
+                        <pre><code data-trim>
+$ git ls-remote --tags                    
+From git@github.com:omeinusch/git-kurs.git
+fa0020b7638aa1a7de5054&hellip;        refs/tags/release-1
+5575ced96ac380b9980a3d&hellip;        refs/tags/release-1^{}
+dd9d45274b02d279c8e0d7&hellip;        refs/tags/release-2-signed
+6379c76c02e6bf2a96a688&hellip;        refs/tags/release-2-signed^{}
+                        </code></pre>  
+                    </section>
+                </section>
+                <section>    
+                     <section>
+                        <h2>Das geht auch mit Branches</h2>
+                        <pre><code data-trim>
+$ git checkout -b super-branch
+$ nano hello.py
+$ git diff
+diff --git a/hello.py b/hello.py
+index 95b2bea..509dcae 100644
+--- a/hello.py
++++ b/hello.py
+@@ -1 +1,2 @@
+ print 'Machen wir mal was ganz anderes.'
++print 'Auf den Branch vorbereiten!'
+$ git commit -a -m "Die Datei ist vorbereitet!"
+                        </code></pre>  
+                    </section>
+                     <section>
+                        <h2>Und ab damit!</h2>
+                        <pre><code data-trim>
+$ git push origin super-branch
+Counting objects: 5, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 327 bytes, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To git@github.com:omeinusch/git-kurs.git
+ * [new branch]      super-branch -> super-branch
+                        </code></pre>  
+                    </section>
+                    
+                    <section>
+                        <h2>Was geht auf dem Server?</h2>
+                        <pre><code data-trim>
+$ git ls-remote --heads
+From git@github.com:omeinusch/git-kurs.git
+4b5267b69bfc7f67b2470d&hellip;        refs/heads/master
+f2d28cb3fac7d8a66e40a6&hellip;        refs/heads/super-branch
+                        </code></pre>  
+                    </section>
+                    
+                    <section>
+                        <h2>Und wieder weg!</h2>
+                        <pre><code data-trim>
+$ git push origin :super-branch
+To git@github.com:omeinusch/git-kurs.git
+ - [deleted]         super-branch
+                        </code></pre>  
+                    </section>
+                </section>
+                
             </div>
 
         </div>
